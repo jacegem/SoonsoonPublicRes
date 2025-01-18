@@ -22,15 +22,15 @@ public class ARDrawLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_use)
+        if (_use)
         {
-            if(_startLine)
+            if (_startLine)
             {
                 DrawLineContinue();
             }
@@ -41,12 +41,12 @@ public class ARDrawLine : MonoBehaviour
     {
         GameObject tLine = Instantiate(_lineRenderePrefabs);
         tLine.transform.SetParent(_linePool);
-        tLine.transform.position=Vector3.zero;
-        tLine.transform.localScale = new Vector3(1,1,1);
-        
+        tLine.transform.position = Vector3.zero;
+        tLine.transform.localScale = new Vector3(1, 1, 1);
+
         _lineRendere = tLine.GetComponent<LineRenderer>();
         _lineRendere.positionCount = 1;
-        _lineRendere.SetPosition(0,_pivotPoint.position);
+        _lineRendere.SetPosition(0, _pivotPoint.position);
 
         _lineRendere.startColor = _nowColor;
         _lineRendere.endColor = _nowColor;
@@ -58,14 +58,14 @@ public class ARDrawLine : MonoBehaviour
 
     public void DrawLineContinue()
     {
-        _lineRendere.positionCount = _lineRendere.positionCount+1;
-        _lineRendere.SetPosition(_lineRendere.positionCount-1,_pivotPoint.position);
+        _lineRendere.positionCount = _lineRendere.positionCount + 1;
+        _lineRendere.SetPosition(_lineRendere.positionCount - 1, _pivotPoint.position);
     }
 
     public void StartDrawLine()
     {
         _use = true;
-        if(!_startLine)
+        if (!_startLine)
         {
             MakeLineRendere();
         }
@@ -81,9 +81,9 @@ public class ARDrawLine : MonoBehaviour
     public void ChangeColor()
     {
         _colorNumber++;
-        if(_colorNumber >= _colorList.Count) _colorNumber =0;
+        if (_colorNumber >= _colorList.Count) _colorNumber = 0;
 
-        _nowColor  = _colorList[_colorNumber];
+        _nowColor = _colorList[_colorNumber];
         _colorButton.color = _nowColor;
     }
 
